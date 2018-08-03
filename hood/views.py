@@ -6,4 +6,4 @@ from hood.models import  Profile,Neighborhood,Business
 # Create your views here.
 @login_required(login_url='/accounts/login/')
 def index(request):
-    return HttpResponse("Waaauh ")
+    return render(request, 'index.html', locals())
