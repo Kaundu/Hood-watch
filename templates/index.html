@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+    {% load bootstrap4 %}
+    {% load static %}
+
+    {% block styles %}
+        {% bootstrap_css %}
+        <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    {% endblock %}
+
+    <div class="container-fluid">
+
+        <div class="row">
+
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <h1 class="text-center">AWARE</h1>
+            </div>
+            <div class="col-md-2"></div>
+
+        </div>
+
+    </div>
+
+
+{% endblock %}
