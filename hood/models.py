@@ -11,8 +11,17 @@ class Profile(models.Model):
     email = models.CharField(max_length=50)
     prof_pic = models.ImageField(upload_to= 'profiles/', blank=True)
 
+
 class Neighborhood(models.Model):
     name = models.CharField(max_length=50)
     location = models.CharField(max_length=50)
     occupants = models.IntegerField()
     admin =  models.ForeignKey(User, related_name="made_by", on_delete=models.CASCADE)
+
+
+class Business(models.Model):
+    name = models.CharField(max_length=50)
+    about = models.TextField(max_length=255, blank=True )
+    email = models.CharField(max_length=50)
+    owner =  models.ForeignKey(User, related_name="ownde_by", on_delete=models.CASCADE)
+    hood = models.ForeignKey(Neighborhood,  on_delete=models.CASCADE)
