@@ -45,3 +45,17 @@ def updateprofile(request):
 			form = ProfileForm()
 	return render(request, 'updateprofile.html',{"form":form })
 
+def new_neighborhood(request):
+    current_user = request.user
+
+    if request.method == 'POST':
+        form = NeighborhoodForm(request.POST, request.FILES)
+        if form.is_valid():
+            neighborhood = form.save(commit=False)
+            neighborhood.user = current_user
+            neighborhood.save()
+            return redirect('index')
+    else:
+        form = NeighborhoodForm()
+    return render(request, 'new_neighborhood.html', {"form": form})
+
