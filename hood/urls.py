@@ -8,6 +8,7 @@ urlpatterns=[
     url('^updateprofile$', views.updateprofile , name='updateprofile' ),
     url('^newbusiness$' , views.new_business, name='new_business'),
     url('^newneighborhood$' , views.new_neighborhood, name='new_neighborhood'),
+    url('^newpost$' , views.new_post, name='new_post'),
     url('^profile/(?P<user_id>\d+)', views.profile, name='profile'),
     url('^neighborhood/(?P<neighborhood_id>\d+)', views.neighborhood, name='neighborhood'),
     url('^business/(?P<business_id>\d+)' , views.business, name='business'),
