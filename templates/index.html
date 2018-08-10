@@ -11,14 +11,62 @@
         <link rel="stylesheet" href="{% static 'css/index.css' %}">
     {% endblock %}
 
-    <div class="container-fluid">
+    <div class="container-fluid" >
 
-        <div class="row">
+        <div class="row" id="mn">
 
             <div class="col-md-2"></div>
             <div class="col-md-8">
-                <h1 class="text-center">AWARE</h1>
+                <h1 class="text-center">VIGIL</h1>
             </div>
+            <div class="col-md-2"></div>
+
+        </div>
+
+        <a class="row">
+
+             <div class="col-md-2"></div>
+            <div class="col-md-8">
+
+                <h3 class="text-center">Welcome {{ user.profile.first_name}}</h3>
+
+                <p>View your Neighbor-hood
+
+                <br>
+                <div class="card-deck">
+                {% for hood in hoods %}
+
+                    <div class="card bg-success" >
+                    <a href="{% url 'neighborhood' neighborhood_id=hood.id %}">
+                        <div class="card-header"> <h1> {{ hood.name }} </h1></div>
+                        <div class="card-body text-center">
+                          <h3 class="card-text">{{ hood.location }}</h3>
+                            <br>
+                          <p class="card-text">{{ hood.hood.count }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <a class='btn btn-default' href="{% url 'joinneighborhood' n_id=hood.id %}">Join NeighborHood</a>
+                        </div>
+                    </a>
+                    </div>
+{#                       <div class="card bg-primary">#}
+{#                    <div class="card-body text-center">#}
+{#                      <p class="card-text">Some text inside the second card</p>#}
+{#                    </div>#}
+{#                    </div>#}
+{#                    <div class="card bg-primary">#}
+{#                    <div class="card-body text-center">#}
+{#                      <p class="card-text">Some text inside the third card</p>#}
+{#                    </div>#}
+{#                    </div>#}
+{#                    <div class="card bg-primary">#}
+{#                    <div class="card-body text-center">#}
+{#                      <p class="card-text">Some text inside the fourth card</p>#}
+{#                    </div>#}
+{#                    </div>#}
+                {% endfor %}
+                </div>
+
             <div class="col-md-2"></div>
 
         </div>
