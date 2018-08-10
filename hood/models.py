@@ -5,12 +5,27 @@ from django.dispatch import receiver
 import datetime as dt
 
 # Create your models here.
+
+
+class Neighborhood(models.Model):
+    name = models.CharField(max_length=50)
+    location = models.CharField(max_length=50)
+    # occupants = models.IntegerField(null= True,blank=True)
+    admin =  models.ForeignKey(User, related_name="made_by", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
 class Profile(models.Model):
+    user = models.OneToOneField(User, related_name="profile", on_delete=models.CASCADE)
     first_name = models.CharField(max_length=50 )
     last_name= models.CharField(max_length=50)
     email = models.CharField(max_length=50)
+    neighbor_hood = models.ForeignKey(Neighborhood, on_delete=models.CASCADE, related_name="hood", null=True,blank=True)
     prof_pic = models.ImageField(upload_to= 'profiles/', blank=True)
 
+    def __str__(self):
+        return self.first_name
 
 class Neighborhood(models.Model):
     name = models.CharField(max_length=50)
