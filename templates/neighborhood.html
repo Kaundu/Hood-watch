@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+    {% load bootstrap4 %}
+    {% load static %}
+
+    {% block styles %}
+        {% bootstrap_css %}
+        <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    {% endblock %}
+
+    <div class="container-fluid">
+
+        <div class="row">
+
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <h1 class="text-center">VIGIL</h1>
+            </div>
+            <div class="col-md-2"></div>
+
+        </div>
+
+        <div class="row">
+
+             <div class="col-md-2">
+                <a class='btn btn-default' href="{% url 'new_business'  %}">Add a business</a>
+             </div>
+
+            <div class="col-md-8">
+
+                {% for business in businesses %}
+                    <div class="card">
+                        <div class="card-header"><h2>{{ business.name }}</h2></div>
+                        <div class="card-body">
+                            <p>{{ business.about }}</p>
+                            <h4>Owner : {{ business.owner }}</h4>
+
+                        </div>
+                        <div class="card-footer">
+                            <h5>{{ business.email }}</h5>
+                        </div>
+                    </div>
+                {% endfor %}
+                <br>
+                <br>
+                  {% for post in posts %}
+                    <div class="card">
+                        <div class="card-header"><h2>{{ post.title }}</h2></div>
+                        <div class="card-body">
+                            <p>{{ post.content }}</p>
+                            <h4>Owner : {{ business.owner }}</h4>
+
+                        </div>
+                        <div class="card-footer">
+                            <h5>{{ post.profile }}</h5>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="col-md-2">
+                <a class='btn btn-default' href="{% url 'new_post'  %}">Add a Post</a>
+            </div>
+
+        </div>
+
+    </div>
+
+
+{% endblock %}
