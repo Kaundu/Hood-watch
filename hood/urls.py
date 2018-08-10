@@ -12,6 +12,8 @@ urlpatterns=[
     url('^profile/(?P<user_id>\d+)', views.profile, name='profile'),
     url('^neighborhood/(?P<neighborhood_id>\d+)', views.neighborhood, name='neighborhood'),
     url('^business/(?P<business_id>\d+)' , views.business, name='business'),
+    url('^joinneighborhood/(?P<n_id>\d+)', views.join_neighborhood, name='joinneighborhood'),
+
 ]
-# if settings.DEBUG:
-#     urlpatterns+=static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+if settings.DEBUG:
+    urlpatterns+=static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
