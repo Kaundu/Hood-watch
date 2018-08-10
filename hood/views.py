@@ -22,3 +22,9 @@ def profile(request, user_id):
 	profile = Profile.objects.get(user= users)
 	print(profile)
 	return render(request, 'profile.html', locals())
+
+@login_required(login_url='/accounts/login')
+def neighborhood(request,neighborhood_id):
+    businesses = Business.objects.all()
+    posts = Post.objects.all()
+    return render(request, 'neighborhood.html', locals())
