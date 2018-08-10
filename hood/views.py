@@ -59,3 +59,17 @@ def new_neighborhood(request):
         form = NeighborhoodForm()
     return render(request, 'new_neighborhood.html', {"form": form})
 
+def new_business(request):
+    current_user = request.user
+
+    if request.method == 'POST':
+        form = BusinessForm(request.POST, request.FILES)
+        if form.is_valid():
+            business = form.save(commit=False)
+            business.user = current_user
+            business.save()
+            return redirect('index')
+
+    else:
+        form = BusinessForm()
+    return render(request, 'new_business.html', {"form": form})
