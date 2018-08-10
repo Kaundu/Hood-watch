@@ -7,6 +7,7 @@ import datetime as dt
 # Create your models here.
 
 
+
 class Neighborhood(models.Model):
     name = models.CharField(max_length=50)
     location = models.CharField(max_length=50)
@@ -27,11 +28,6 @@ class Profile(models.Model):
     def __str__(self):
         return self.first_name
 
-class Neighborhood(models.Model):
-    name = models.CharField(max_length=50)
-    location = models.CharField(max_length=50)
-    occupants = models.IntegerField()
-    admin =  models.ForeignKey(User, related_name="made_by", on_delete=models.CASCADE)
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
         if created:
@@ -45,8 +41,12 @@ class Business(models.Model):
     name = models.CharField(max_length=50)
     about = models.TextField(max_length=255, blank=True )
     email = models.CharField(max_length=50)
-    owner =  models.ForeignKey(User, related_name="ownde_by", on_delete=models.CASCADE)
+    owner =  models.ForeignKey(User, related_name="owned_by", on_delete=models.CASCADE)
     hood = models.ForeignKey(Neighborhood,  on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
+
 
 class Post(models.Model):
     title = models.CharField(max_length=200, blank=True, null=True)
