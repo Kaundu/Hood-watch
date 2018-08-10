@@ -28,3 +28,8 @@ def neighborhood(request,neighborhood_id):
     businesses = Business.objects.all()
     posts = Post.objects.all()
     return render(request, 'neighborhood.html', locals())
+
+def business(request, business_id):
+    businesses = Business.objects.all()
+    return render(request, 'business.html' , locals())
+
