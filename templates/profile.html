@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+    {% load bootstrap4 %}
+    {% load static %}
+
+    {% block styles %}
+        {% bootstrap_css %}
+        <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    {% endblock %}
+
+    <div class="container-fluid">
+
+        <div class="row">
+
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <h1 class="text-center">AWARE</h1>
+            </div>
+            <div class="col-md-2"></div>
+
+        </div>
+
+        <div class="row">
+
+             <div class="col-md-2"></div>
+            <div class="col-md-8">
+
+                <div class="card">
+                    <div class="card-header">
+                        Welcome {{ user.profile.first_name}}
+                    </div>
+                    <div class="card-body">
+
+                        We are working on this page as you check it out
+
+                    </div>
+                    <div class="card-footer">
+                        <a href="{% url 'updateprofile' %}"><button class="btn btn-primary btn-sm widen"><strong>Make a profile</strong></button></a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        {{ user.first_name }}  {{ user.last_name }}
+                    </div>
+                    <div class="card-body">
+                        <img class="img-fluid rounded-circle" src="{{ user.profile.prof_pic.url }}">
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-2"></div>
+
+        </div>
+
+    </div>
+
+
+{% endblock %}
