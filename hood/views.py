@@ -33,3 +33,15 @@ def business(request, business_id):
     businesses = Business.objects.all()
     return render(request, 'business.html' , locals())
 
+@login_required(login_url='/accounts/login')
+def updateprofile(request):
+	if request.method == 'POST':
+		form = ProfileForm(request.POST,request.FILES, instance=request.user.profile)
+		if form.is_valid():
+			form.save()
+			return redirect('index')
+
+	else:
+			form = ProfileForm()
+	return render(request, 'updateprofile.html',{"form":form })
+
