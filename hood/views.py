@@ -45,6 +45,13 @@ def updateprofile(request):
 			form = ProfileForm()
 	return render(request, 'updateprofile.html',{"form":form })
 
+def join_neighborhood(request,n_id):
+    neighborhood = Neighborhood.objects.get(pk=n_id)
+    request.user.profile.neighbor_hood=neighborhood
+    request.user.profile.save()
+    return redirect('/neighborhood/'+f'{n_id}')
+
+
 def new_neighborhood(request):
     current_user = request.user
 
